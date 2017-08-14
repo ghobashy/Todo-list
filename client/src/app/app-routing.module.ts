@@ -5,12 +5,12 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "list",
+    redirectTo: "todo/list",
     pathMatch: 'full'
   },
   {
     // Home
-    path: "list",
+    path: "todo",
     loadChildren: 'app/list-management/list-management.module#ListManagementModule'
   },
   {
