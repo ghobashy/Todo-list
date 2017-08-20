@@ -9,15 +9,21 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    // Home
-    path: "todo",
-    loadChildren: 'app/list-management/list-management.module#ListManagementModule'
-  },
-  {
-    // Registration
-    path: "user",
-    loadChildren: 'app/user-management/user-management.module#UserManagementModule',
-  },
+    path:'pages',
+    children:[
+      {
+        // Home
+        path: "todo",
+        loadChildren: 'app/list-management/list-management.module#ListManagementModule'
+      },
+      {
+        // Registration
+        path: "user",
+        loadChildren: 'app/user-management/user-management.module#UserManagementModule',
+      }
+    ]
+  }
+  
 ];
 
 @NgModule({

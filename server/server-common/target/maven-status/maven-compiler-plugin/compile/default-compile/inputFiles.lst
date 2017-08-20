@@ -1,0 +1,12 @@
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/controllers/UserController.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/security/WebSecurityConfig.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/security/jwt/AuthenticatedUser.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/security/jwt/JWTLoginFilter.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/AuthApplication.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/security/jwt/TokenAuthenticationService.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/config/AppConfig.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/commons/Defines.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/controllers/AuthUserController.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/security/jwt/AccountCredentials.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/security/jwt/JWTAuthenticationFilter.java
+/Users/Ghobashy2/Desktop/Projects/Todo-list-Celonis/server/server-common/src/main/java/com/celonis/services/Auth0Client.java
