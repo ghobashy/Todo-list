@@ -17,9 +17,6 @@ public class UserDAO implements IUserDAO{
 	@PersistenceContext	
 	private EntityManager entityManager;
 	
-	public UserDAO() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override

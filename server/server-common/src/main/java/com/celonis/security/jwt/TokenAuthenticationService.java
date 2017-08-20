@@ -4,6 +4,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.Authentication;
 
+import com.celonis.models.AuthUser;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -39,7 +41,7 @@ public class TokenAuthenticationService {
                         .getSubject();
             if(username != null) // we managed to retrieve a user
             {
-                return new AuthenticatedUser(username);
+                return new AuthUser(username);
             }
         }
         return null;
