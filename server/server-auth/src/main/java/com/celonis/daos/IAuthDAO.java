@@ -1,5 +1,5 @@
 package com.celonis.daos;
 
-public interface ILoginDAO {
+public interface IAuthDAO {
 	boolean authenticateUser(String username, String password);
 }

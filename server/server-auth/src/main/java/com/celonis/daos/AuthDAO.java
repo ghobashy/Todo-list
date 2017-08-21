@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public class LoginDAO implements ILoginDAO{
+public class AuthDAO implements IAuthDAO{
 	
 	@PersistenceContext	
 	private EntityManager entityManager;
@@ -17,7 +17,7 @@ public class LoginDAO implements ILoginDAO{
 
 	@Override
 	public boolean authenticateUser(String username, String password) {
-		String hql = "FROM user as userList WHERE userList.username = ? and password = ?";
+		String hql = "FROM User as userList WHERE userList.username = ? and password = ?";
 		int count = entityManager.createQuery(hql).setParameter(1, username).setParameter(2,password)
 		              .getResultList().size();
 		return count > 0 ? true : false;

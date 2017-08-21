@@ -7,19 +7,14 @@ import org.springframework.security.core.GrantedAuthority;
 
 public class AuthUser implements Authentication {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4378242564962181955L;
 	private String username;
 	private String password;
+	private boolean authenticated = true;
 	
-	
-	public AuthUser(String username) {
-		super();
-		this.username = username;
-	}
-	public AuthUser(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
-	}
 	public String getUsername() {
 		return username;
 	}
@@ -58,14 +53,13 @@ public class AuthUser implements Authentication {
 		return null;
 	}
 	@Override
-	public boolean isAuthenticated() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
+    public boolean isAuthenticated() {
+        return this.authenticated;
+    }
+
+    @Override
+    public void setAuthenticated(boolean b) throws IllegalArgumentException {
+        this.authenticated = b;
+    }
 
 }

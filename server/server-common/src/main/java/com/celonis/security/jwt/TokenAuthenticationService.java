@@ -41,7 +41,9 @@ public class TokenAuthenticationService {
                         .getSubject();
             if(username != null) // we managed to retrieve a user
             {
-                return new AuthUser(username);
+            	AuthUser user = new AuthUser();
+            	user.setUsername(username);
+                return user;
             }
         }
         return null;
