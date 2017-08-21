@@ -37,12 +37,12 @@ public class UserController {
 	}
 
 	@PostMapping("/")
-	public ResponseEntity<Void> addUser(@RequestBody User user) {
-		boolean flag = userService.addUser(user);
-		if (flag == false) {
-			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+		User updatedUser = userService.addUser(user);
+		if (updatedUser == null) {
+			return new ResponseEntity<User>(HttpStatus.CONFLICT);
 		}
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+		return new ResponseEntity<User>(updatedUser,HttpStatus.CREATED);
 	}
 	
 	@PatchMapping("/")

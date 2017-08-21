@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, HttpModule } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "app/app-routing.module";
+import { SharedModule } from "app/shared/shared.module";
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -13,11 +14,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpModule,
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
     {

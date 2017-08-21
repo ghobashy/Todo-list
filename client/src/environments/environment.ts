@@ -6,5 +6,8 @@
 export const environment = {
   production: false,
   serverBaseURL: "/api",
-  jwtBaseURL: "https://ghobashy.eu.auth0.com/oauth"
+  jwtBaseURL: "https://ghobashy.eu.auth0.com/oauth",
+  authBaseURL: "http://localhost:8080/",
+  userBaseURL: "http://localhost:8082/",
+  todoBaseURL: "http://localhost:8081/"
 };

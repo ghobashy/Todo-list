@@ -3,16 +3,19 @@ import { LOCAL_STORAGE } from '../commons/Defines';
 import { Http, Response } from "@angular/http";
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
+import { StorageService } from "app/shared/services/storage.service";
+import { API_URLS } from "app/shared/config/routes.cofig";
 
 @Injectable()
 export class AuthenticationService {
 
   private token: string;
+  private CURRENT_USER;
 
 
-  constructor(private http: Http) {
-    var currentUser = JSON.parse(localStorage.getItem(LOCAL_STORAGE.PROFILE_NAME));
-    this.token = currentUser && currentUser.token;
+  constructor(private http: Http, private storageService:StorageService) {
+    this.CURRENT_USER = storageService.getLocalStorage();
+    this.token = this.CURRENT_USER && this.CURRENT_USER.token;
   }
 
   /**
@@ -21,12 +24,13 @@ export class AuthenticationService {
    * @param password 
    */
   public login(username: string, password: string): Observable<boolean> {
-    return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
+    return this.http.post(API_URLS.LOGIN, JSON.stringify({ username: username, password: password }))
       .map((response: Response) => {
-        let token = response.json() && response.json().token;
+        let token = response.headers.get("Authorization");
         if (token) {
           this.token = token;
-          localStorage.setItem(LOCAL_STORAGE.PROFILE_NAME, JSON.stringify({ username: username, token: token }));
+          this.CURRENT_USER = { username: username, token: token };
+          this.storageService.setStorageData(LOCAL_STORAGE.PROFILE_NAME, JSON.stringify(this.CURRENT_USER));
           // return true to indicate successful login
           return true;
         } else {
@@ -40,6 +44,10 @@ export class AuthenticationService {
     // clear token remove user from local storage to log user out
     this.token = null;
     localStorage.removeItem(LOCAL_STORAGE.PROFILE_NAME);
+  }
+
+  public isAuthenticated(){
+    return !!this.CURRENT_USER.token;
   }
 
 }

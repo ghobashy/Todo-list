@@ -31,8 +31,10 @@ public class UserDAO implements IUserDAO{
 	}
 
 	@Override
-	public void addUser(User user) {
+	public User addUser(User user) {
 		entityManager.persist(user);
+		entityManager.flush();
+		return user;
 		
 	}
 	@Override
@@ -52,7 +54,7 @@ public class UserDAO implements IUserDAO{
 	
 	@Override
 	public boolean userExists(String username) {
-		String hql = "FROM user as userList WHERE userList.username = ?";
+		String hql = "FROM User as userList WHERE userList.username = ?";
 		int count = entityManager.createQuery(hql).setParameter(1, username)
 		              .getResultList().size();
 		return count > 0 ? true : false;

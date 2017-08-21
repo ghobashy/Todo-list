@@ -8,8 +8,9 @@ export class StorageService {
   private cachedSession:object={};
   constructor() { }
 
-  private setStorageData( key: string, value: any) {
+  public setStorageData( key: string, value: any) {
     key += LOCAL_STORAGE.DATA_PREFIX;
+    this.cachedSession[key]= value;
     if (typeof value === 'object') {
       localStorage.setItem(key, JSON.stringify(value));
     } else {

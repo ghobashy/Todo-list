@@ -2,6 +2,8 @@ package com.celonis.security.jwt;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 
 import com.celonis.models.AuthUser;
@@ -26,6 +28,17 @@ public class TokenAuthenticationService {
                     .signWith(SignatureAlgorithm.HS512, secret)
                     .compact();
         response.addHeader(headerString,tokenPrefix + " "+ JWT);
+    }
+    
+    public void addHeader(HttpHeaders headers, String username)
+    {
+        // We generate a token now.
+        String JWT = Jwts.builder()
+                    .setSubject(username)
+                    .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
+                    .signWith(SignatureAlgorithm.HS512, secret)
+                    .compact();
+        headers.add(headerString,tokenPrefix + " "+ JWT);
     }
 
     public Authentication getAuthentication(HttpServletRequest request)

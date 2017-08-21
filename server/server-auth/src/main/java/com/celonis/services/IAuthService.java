@@ -6,7 +6,7 @@ import com.celonis.models.AuthUser;
 public interface IAuthService {
 	
 	boolean authenticateUser(AuthUser user);
-	boolean registerUser(User user);
+	User registerUser(User user) throws Exception;
 	
 
 }

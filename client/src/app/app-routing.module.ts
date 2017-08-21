@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AuthenticationGuard } from "app/shared/guards/authentication.guard";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "todo/list",
+    redirectTo: "pages/todo/list",
     pathMatch: 'full'
   },
   {
+    path:'auth',
+    loadChildren:'app/login-and-registration/login-and-registration.module#LoginAndRegistrationModule'
+  },
+  {
     path:'pages',
+    canActivate:[AuthenticationGuard],
     children:[
       {
         // Home

@@ -23,12 +23,12 @@ public class UserService implements IUserService{
 		return userDAO.getAllUsers();
 	}
 	@Override
-	public synchronized boolean addUser(User user){
+	public synchronized User addUser(User user){
                 if (userDAO.userExists(user.getUsername())) {
-    	            return false;
+    	            return null;
                 } else {
-    	            userDAO.addUser(user);
-    	            return true;
+                	user.setStatus("active");
+    	            return userDAO.addUser(user);
                 }
 	}
 	@Override
