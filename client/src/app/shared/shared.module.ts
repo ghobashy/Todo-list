@@ -6,7 +6,8 @@ import { AuthenticationService } from "app/shared/services/authentication.servic
 import { AlertService } from "app/shared/services/alert.service";
 import { AuthenticationGuard } from "app/shared/guards/authentication.guard";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from "@angular/http";
+import { HttpModule, RequestOptions } from "@angular/http";
+import { DefaultRequestOptions } from "app/shared/services/default-request-options.service";
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { HttpModule } from "@angular/http";
     CommonModule,
     ReactiveFormsModule,
     AlertComponent],
-  providers:[StorageService,AuthenticationService, AlertService, AuthenticationGuard]
+  providers:[StorageService,AuthenticationService, AlertService, AuthenticationGuard, 
+    {provide: RequestOptions, useClass: DefaultRequestOptions }]
 })
 export class SharedModule { }

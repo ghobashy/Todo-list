@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "app/app-routing.module";
 import { SharedModule } from "app/shared/shared.module";
+import { PagesComponent } from './pages/pages.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -15,6 +16,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 @NgModule({
   declarations: [
     AppComponent,
+    PagesComponent,
     
   ],
   imports: [

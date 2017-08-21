@@ -9,7 +9,7 @@ export class StorageService {
   constructor() { }
 
   public setStorageData( key: string, value: any) {
-    key += LOCAL_STORAGE.DATA_PREFIX;
+    key =  key;
     this.cachedSession[key]= value;
     if (typeof value === 'object') {
       localStorage.setItem(key, JSON.stringify(value));
@@ -31,7 +31,11 @@ export class StorageService {
     }
   }
 
-   public getLocalStorage() {
-      return localStorage;
+   public getLocalStorage(key) {
+     if(this.cachedSession[LOCAL_STORAGE.PROFILE_NAME]){
+       return this.cachedSession[LOCAL_STORAGE.PROFILE_NAME]
+     }
+     this.cachedSession[LOCAL_STORAGE.PROFILE_NAME] = JSON.parse(localStorage.getItem(LOCAL_STORAGE.PROFILE_NAME));
+      return this.cachedSession[LOCAL_STORAGE.PROFILE_NAME];
   }
 }

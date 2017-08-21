@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from "app/shared/services/authentication.service";
 import { AlertService } from "app/shared/services/alert.service";
+import { LoginAndRegistrationService } from "app/login-and-registration/login-and-registration.service";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService,
+        private loginAndRegistration: LoginAndRegistrationService,
         private alertService: AlertService) { }
 
     ngOnInit() {
@@ -25,18 +26,20 @@ export class LoginComponent implements OnInit {
         // this.authenticationService.logout();
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/pages/todo';
     }
 
     login() {
         this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password)
+        this.loginAndRegistration.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
+                    this.loading = false;
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.alertService.error(error);
+                    let message = "Invalid login credentials";
+                    this.alertService.error(message);
                     this.loading = false;
                 });
     }

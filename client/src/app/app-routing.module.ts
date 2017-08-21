@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthenticationGuard } from "app/shared/guards/authentication.guard";
+import { PagesComponent } from "app/pages/pages.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
   },
   {
     path:'pages',
+    component: PagesComponent,
     canActivate:[AuthenticationGuard],
     children:[
       {

@@ -14,7 +14,7 @@ export class AuthenticationService {
 
 
   constructor(private http: Http, private storageService:StorageService) {
-    this.CURRENT_USER = storageService.getLocalStorage();
+    this.CURRENT_USER = storageService.getLocalStorage(LOCAL_STORAGE.PROFILE_NAME);
     this.token = this.CURRENT_USER && this.CURRENT_USER.token;
   }
 
@@ -24,13 +24,13 @@ export class AuthenticationService {
    * @param password 
    */
   public login(username: string, password: string): Observable<boolean> {
-    return this.http.post(API_URLS.LOGIN, JSON.stringify({ username: username, password: password }))
+    return this.http.post(API_URLS.LOGIN, { username: username, password: password })
       .map((response: Response) => {
         let token = response.headers.get("Authorization");
         if (token) {
           this.token = token;
           this.CURRENT_USER = { username: username, token: token };
-          this.storageService.setStorageData(LOCAL_STORAGE.PROFILE_NAME, JSON.stringify(this.CURRENT_USER));
+          this.storageService.setStorageData(LOCAL_STORAGE.PROFILE_NAME, this.CURRENT_USER);
           // return true to indicate successful login
           return true;
         } else {
@@ -47,7 +47,7 @@ export class AuthenticationService {
   }
 
   public isAuthenticated(){
-    return !!this.CURRENT_USER.token;
+    return !!this.storageService.getLocalStorage(LOCAL_STORAGE.PROFILE_NAME);
   }
 
 }

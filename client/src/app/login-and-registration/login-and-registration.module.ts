@@ -5,12 +5,16 @@ import { LoginAndRegistrationRoutingModule } from './login-and-registration-rout
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from "app/shared/shared.module";
 import { LoginAndRegistrationComponent } from './login-and-registration.component';
+import { LoginAndRegistrationService } from "app/login-and-registration/login-and-registration.service";
 
 @NgModule({
   imports: [
     SharedModule,
     LoginAndRegistrationRoutingModule
   ],
-  declarations: [LoginComponent, LoginAndRegistrationComponent]
+  declarations: [LoginComponent, LoginAndRegistrationComponent],
+  providers:[
+    LoginAndRegistrationService
+  ]
 })
 export class LoginAndRegistrationModule { }
