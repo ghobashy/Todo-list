@@ -2,6 +2,7 @@ package com.celonis.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,14 +24,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers("/users/").permitAll()
         .antMatchers(HttpMethod.POST, "/login").permitAll()
+        .antMatchers(HttpMethod.POST, "/auth/").permitAll()
         .anyRequest().authenticated()
         .and()
         // We filter the api/login requests
         .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
                 UsernamePasswordAuthenticationFilter.class)
+//        .authenticationProvider(Cust)
         // And filter other requests to check the presence of JWT in header
         .addFilterBefore(new JWTAuthenticationFilter(),
                 UsernamePasswordAuthenticationFilter.class);
 
+    }
+    
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+        // Create a default account
+//    	auth.
+//       /* auth.inMemoryAuthentication()
+//                .withUser("admin")
+//                .password("password")
+//                .roles("ADMIN");
+//                */
     }
 }

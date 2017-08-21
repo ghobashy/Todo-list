@@ -12,7 +12,7 @@ import com.celonis.models.AuthUser;
 import com.celonis.services.ILoginService;
 
 @Controller
-@RequestMapping("login")
+@RequestMapping("auth")
 public class LoginController {
 
 	@Autowired

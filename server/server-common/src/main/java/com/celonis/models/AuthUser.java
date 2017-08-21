@@ -15,6 +15,11 @@ public class AuthUser implements Authentication {
 		super();
 		this.username = username;
 	}
+	public AuthUser(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
 	public String getUsername() {
 		return username;
 	}
